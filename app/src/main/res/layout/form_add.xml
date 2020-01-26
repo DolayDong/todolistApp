@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:id="@+id/ln">
 
     <EditText
-        android:id="@+id/et_add_data"
-        android:hint="tulis list disini. . ."
+        android:id="@+id/edt_todo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background_normal"/>
+        android:hint="@string/hint_edit_text_add"/>
+
 </LinearLayout>
