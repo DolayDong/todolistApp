@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity{
 
         //Cara dua tambah edit text ke dialog
         //proses ini disebut dengan inflate layout
-        View view = View.inflate(this,R.layout.form_add, null);
+        final View view = View.inflate(this,R.layout.form_add, null);
 
         //EditText ini dideklarisikan di atas di dalam class
         edtTodo = view.findViewById(R.id.edt_todo);
@@ -133,7 +133,8 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (edtTodo.length() == 0){
-                    Toast.makeText(getApplicationContext(), "Tidak ada data ditambah", Toast.LENGTH_SHORT).show();
+                   //Toast.makeText(getApplicationContext(), "Tidak ada data ditambah", Toast.LENGTH_SHORT).show();
+                    alertSatuTombol();
                 } else {
                     // 8.2 hitung size dari arraylist data untuk dijadikan calon key untuk SP :
                     int newKey = data.size();
@@ -291,5 +292,18 @@ public class MainActivity extends AppCompatActivity{
         arrayAdapter.notifyDataSetChanged();
     }
 
+    public void alertSatuTombol() {
+        final AlertDialog.Builder dialogNull = new AlertDialog.Builder(this);
+                dialogNull.setTitle("PERHATIAN");
+                dialogNull.setMessage("Data tidak boleh kosong");
+                dialogNull.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                onClickFabAdd();
 
+                            }
+                        });
+        dialogNull.create();
+        dialogNull.show();
+    }
 }
