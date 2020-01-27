@@ -5,4 +5,6 @@
 
     <item android:id="@+id/menuHapus"
         android:title="Hapus"/>
+    <item android:id="@+id/menuHapusSemua"
+        android:title="Hapus Semua"/>
 </menu>

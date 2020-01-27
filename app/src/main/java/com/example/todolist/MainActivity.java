@@ -93,6 +93,10 @@ public class MainActivity extends AppCompatActivity{
                             case R.id.menuHapus:
                                 deleteItem(position);
                                 break;
+                            case R.id.menuHapusSemua:
+                                deleteAll();
+                                arrayAdapter.notifyDataSetChanged();
+                                break;
                         }
                         return false;
                     }
@@ -300,10 +304,31 @@ public class MainActivity extends AppCompatActivity{
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 onClickFabAdd();
-
                             }
                         });
         dialogNull.create();
         dialogNull.show();
+    }
+
+    private void deleteAll(){
+        AlertDialog.Builder hapusSemua = new AlertDialog.Builder(this);
+        hapusSemua.setTitle("Hapus semua list?");
+        hapusSemua.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences todosPref = getSharedPreferences("todosPref",MODE_PRIVATE);
+                SharedPreferences.Editor todosPrefEditor = todosPref.edit();
+
+                todosPrefEditor.clear();
+                todosPrefEditor.apply();
+                data.clear();
+                arrayAdapter.notifyDataSetChanged(); // merefresh list view
+
+            }
+        });
+        hapusSemua.setNegativeButton("Tidak", null);
+        hapusSemua.create();
+        hapusSemua.show();
+
     }
 }
